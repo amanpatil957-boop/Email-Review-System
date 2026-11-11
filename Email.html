@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MailMind | AI Email Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">M</div>
+                <div>
+                    <h2>MailMind</h2>
+                    <p>AI Email Assistant</p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <p class="section-label">WORKSPACE</p>
+
+                <button class="nav-item active" data-view="overview">
+                    <span>◫</span> Overview
+                </button>
+
+                <button class="nav-item" data-view="important">
+                    <span>✦</span> Important Emails
+                    <span class="nav-count" id="importantCount">0</span>
+                </button>
+
+                <button class="nav-item" data-view="normal">
+                    <span>▤</span> Normal Emails
+                </button>
+
+                <button class="nav-item" data-view="all">
+                    <span>✉</span> All Emails
+                </button>
+
+                <button class="nav-item" data-view="briefing">
+                    <span>☀</span> Morning Briefing
+                </button>
+            </div>
+
+            <div class="sidebar-bottom">
+                <div class="ai-status">
+                    <span class="status-dot"></span>
+                    <div>
+                        <strong>AI Assistant</strong>
+                        <p>Ready to assist</p>
+                    </div>
+                </div>
+
+                <div class="profile">
+                    <div class="avatar">U</div>
+                    <div>
+                        <strong>Your Account</strong>
+                        <p>Personal Workspace</p>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+            <header class="topbar">
+
+                <div>
+                    <p class="breadcrumb">Workspace / <span id="breadcrumbText">Overview</span></p>
+                    <h2 id="pageTitle">Email Overview</h2>
+                </div>
+
+                <div class="topbar-actions">
+
+                    <div class="search-box">
+                        <span>⌕</span>
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search emails..."
+                        >
+                    </div>
+
+                    <button class="icon-button" title="Notifications">
+                        ♧
+                    </button>
+
+                    <button class="profile-button">U</button>
+
+                </div>
+
+            </header>
+
+
+            <!-- DASHBOARD VIEW -->
+            <section id="overviewView" class="page-view">
+
+                <!-- WELCOME -->
+                <section class="welcome-section">
+
+                    <div>
+                        <p class="welcome-label">YOUR PERSONAL EMAIL ASSISTANT</p>
+                        <h1>Good morning, <span>there!</span> ☀️</h1>
+                        <p>Here's what needs your attention today.</p>
+                    </div>
+
+                    <div class="date-card">
+                        <span>◷</span>
+                        <div>
+                            <strong id="currentDate">Today</strong>
+                            <p>Your daily overview</p>
+                        </div>
+                    </div>
+
+                </section>
+
+
+                <!-- STATISTICS -->
+                <section class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Important Emails</span>
+                            <div class="stat-icon red">✦</div>
+                        </div>
+                        <h2 id="importantStat">0</h2>
+                        <p>Needs your attention</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Normal Emails</span>
+                            <div class="stat-icon blue">✉</div>
+                        </div>
+                        <h2 id="normalStat">0</h2>
+                        <p>Routine communications</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Unread Emails</span>
+                            <div class="stat-icon purple">◉</div>
+                        </div>
+                        <h2 id="unreadStat">0</h2>
+                        <p>Waiting to be reviewed</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Action Required</span>
+                            <div class="stat-icon orange">↗</div>
+                        </div>
+                        <h2 id="actionStat">0</h2>
+                        <p>Tasks and responses</p>
+                    </div>
+
+                </section>
+
+
+                <!-- MORNING BRIEFING -->
+                <section class="briefing-card">
+
+                    <div class="briefing-heading">
+                        <div class="briefing-icon">✧</div>
+                        <div>
+                            <h3>Your AI Morning Briefing</h3>
+                            <p>A quick overview of your inbox</p>
+                        </div>
+                    </div>
+
+                    <p class="briefing-description" id="briefingText">
+                        Your email briefing will appear here once your inbox
+                        is connected and analyzed by AI.
+                    </p>
+
+                    <button class="text-button" data-view="briefing">
+                        View full briefing →
+                    </button>
+
+                </section>
+
+
+                <!-- EMAIL SECTIONS -->
+                <section class="email-section">
+
+                    <div class="section-heading">
+                        <div>
+                            <h2>Inbox at a glance</h2>
+                            <p>Focus on what matters most.</p>
+                        </div>
+
+                        <select id="priorityFilter">
+                            <option value="all">All priorities</option>
+                            <option value="High">High priority</option>
+                            <option value="Medium">Medium priority</option>
+                            <option value="Low">Low priority</option>
+                        </select>
+                    </div>
+
+
+                    <div class="email-columns">
+
+                        <!-- IMPORTANT EMAILS -->
+                        <div class="email-panel">
+
+                            <div class="panel-heading">
+                                <div>
+                                    <span class="panel-indicator important-indicator"></span>
+                                    <h3>Important Emails</h3>
+                                </div>
+
+                                <span id="importantPanelCount">0</span>
+                            </div>
+
+                            <div id="importantEmails" class="email-list"></div>
+
+                        </div>
+
+
+                        <!-- NORMAL EMAILS -->
+                        <div class="email-panel">
+
+                            <div class="panel-heading">
+                                <div>
+                                    <span class="panel-indicator normal-indicator"></span>
+                                    <h3>Normal Emails</h3>
+                                </div>
+
+                                <span id="normalPanelCount">0</span>
+                            </div>
+
+                            <div id="normalEmails" class="email-list"></div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- OTHER VIEWS -->
+            <section id="otherView" class="page-view hidden">
+
+                <div class="other-view-header">
+                    <h2 id="otherViewTitle">Emails</h2>
+                    <p id="otherViewDescription">
+                        Review your messages and their AI summaries.
+                    </p>
+                </div>
+
+                <div id="otherViewContent" class="other-view-content"></div>
+
+            </section>
+
+            <!-- EMAIL DETAIL MODAL -->
+            <div id="emailModal" class="modal hidden">
+
+                <div class="modal-content">
+
+                    <button id="closeModal" class="modal-close">×</button>
+
+                    <p class="modal-label">EMAIL SUMMARY</p>
+
+                    <h2 id="modalSubject"></h2>
+
+                    <p id="modalSender" class="modal-sender"></p>
+
+                    <div id="modalPriority"></div>
+
+                    <h3>AI Summary</h3>
+                    <p id="modalSummary"></p>
+
+                    <h3>Suggested Action</h3>
+                    <p id="modalAction"></p>
+
+                    <button id="originalEmailButton" class="secondary-button hidden">
+                        Open original email
+                    </button>
+
+                </div>
+
+            </div>
+
+            <footer>
+                <p>MailMind © 2026 · Powered by AI</p>
+            </footer>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

@@ -188,4 +188,5 @@ The project is being developed incrementally, starting with the Python FastAPI b
 AI Email Assistant aims to transform traditional email management into an intelligent, summary-driven experience. By combining email integration, Large Language Models, and structured data storage, the application will help users spend less time reading routine messages and more time addressing important communications.
 
 The long-term vision is to provide a personalized email assistant that presents the right information at the right time while keeping the user in control of their inbox.
-
+<br>
+Author:Aman Patil
